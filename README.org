@@ -1,8 +1,23 @@
-* creatpw : 
+* createpw : 
   A way to create passwords that uses a very advanced random number generation technique (dice).
   The program asks the user to identify the number of words desired to generate for the password [1-10]
   Once the user enters the number of random words to generate, they are are then asked to input
   5 integers [1-6] that correspond to a 6 sided dice. This technique has been well documented by the 
-  Electronic Frontier Foundation [[Dice passwords][https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases]]
+  Electronic Frontier Foundation [[https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases][new word list]] , and one with more instructions [[https://www.eff.org/dice][dice]] . 
+  
+  The EFF articles use spaces inside their passwords, which make me a little crazy, so rather than adding
+  spaces I prefer to separate each word in the password by summing the integers and using the numbers at
+  the top of the keyboard [1234567890] and if the number is greater than ten then using the same keys with
+  the shift activated [!@#$%^&*()]. I haven't asked Bruce Schnier to vet this strategy, but in terms of adding
+  complexity to the password , without adding much to the users process, this simple way still uses the random
+  numbers you've generated. 
+
+  The EFF also created wordlists for [[https://www.eff.org/deeplinks/2018/08/dragon-con-diceware][dragoncon wordlist]]. These wordlists use a 20-sided dice.
+
+* Code:
+  Straight-forward C code that uses pthreads to populate a global array of integers, which then gets
+  used as the search criteria for the large wordlist. 
+
+  
   
 
