@@ -97,10 +97,15 @@ int grep_for_word(int num)
 int main(int argc, char**argv)
 {
 
-    /** ask for the number of password words we need */
 
+    if (argc > 1)
+    {
+        fprintf(stderr, "ERROR: No arguments allowed\n");
+        exit(-1);
+    }
     int ret;
     int limit;
+    /** ask for the number of password words we need */
     ret = get_limit(&limit);
     if (!ret)
     {
