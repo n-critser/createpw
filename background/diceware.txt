@@ -1,0 +1,488 @@
+Diceware for Passphrase Generation and Other Cryptographic 
+Applications
+
+Arnold G. Reinhold
+Cambridge, Mass., USA reinhold@world.std.com
+
+July 28, 1995
+
+-----------------------------------------------------------------------------------
+Most of the information in this paper, along with additional material,  is available in HTML
+form at http://www.diceware.com and the FAQ link there.
+-----------------------------------------------------------------------------------
+
+
+1. Introduction
+
+Truly random quantities are a raw ingredient for many 
+cryptographic applications. Generating randomness by computer 
+can be done but offers numerous opportunities for error and 
+attack. Simple dice present an attractive alternative if used 
+properly. This paper presents a number of techniques for using 
+dice in conjunction with modern cryptographic software. 
+
+2. A Diceware Passphrase Generator
+
+A recent survey on PGP passphrase usage, which I conducted over 
+the Internet and posted to sci.crypt.research, indicated that 
+many PGP users choose weak passphrases. In the interest of 
+getting users to adopt stronger passphrases, I have developed a 
+Diceware Passphrase Generator. It is a simple technique for 
+creating short, memorable passphrases that are highly secure. 
+Best of all, it requires no computer hardware or software.
+
+The Diceware Passphrase Generator is a word list indexed so 
+that words can be randomly selected by tossing five dice. The 
+list contains 7776 short English words, abbreviations and easy 
+to remember character strings. The average length of each word 
+is about 4.2 characters. The longest words are six characters. 
+The list is based a longer word list recently posted to 
+sci.crypt by Peter Kwangjun Suk, which I modified as described 
+in Section 2.4, below.
+
+Here is a short excerpt from the indexed word list:
+
+      16655	clause
+      16656	claw
+      16661	clay
+      16662	clean
+      16663	clear
+      16664	cleat
+      16665	cleft
+      16666	clerk
+      21111	cliche
+      21112	click
+      21113	cliff
+      21114	climb
+      21115	clime
+      21116	cling
+      21121	clink
+      21122	clint
+      21123	clio
+      21124	clip
+      21125	clive
+      21126	cloak
+      21131	clock
+
+2.1 Using the List
+
+Each word in the list is preceded by an index number 
+corresponding to the marks on five dice. For example, if you 
+rolled five dice and they came up 2, 1, 1, 2, 4, your next 
+passphrase word would be "clip".
+
+You can, of course, throw dice one or two at a time, write down 
+the results until you have a sufficient number of five-digit 
+groups, and then look up the groups in the word list.  
+
+But I recommend using five dice. Buy a set if you don't have 
+enough. They're cheap: my local Toys"R"Us sells a package of 
+five for $1.49. Also get a shoe box. Many hardware stores sell 
+a clear plastic shoe storage box that will work fine.
+
+Put the dice in the shoe box, shake them up vigorously -- at 
+least ten hard shakes -- and then tip the box to let all the 
+dice slide down to one edge. Now open the box, read the dice 
+from left to right, or front to back if a few line up, and just 
+look up the corresponding word list entry directly. Repeat this 
+process until you have enough words for your passphrase. 
+
+If you want to work from a printed copy of the word list, open 
+it with your word processor and format it with 4 columns and 54 
+lines per page. You will get a neat, 36 page printout in which 
+the first two dice throws are constant for each page. (6^3 = 
+4*54) This makes look-ups especially easy. Be careful not to 
+mark the printed copy while you are selecting words.
+
+Nineteenth century security precautions are in order here: Make 
+sure you are alone; close the curtains; write on a hard 
+surface, not on a pad; burn your notes and pulverize the ashes 
+after you memorize your pass phrase.
+
+Here are some sample passphrases generated using this list, 
+along with their entropy (had they been kept secret), in bits:
+
+      dine haul                          25.8
+
+      mardi solo flung                   38.7
+
+      ratio acts pr astor                51.7
+
+      lift 99th pagan your bald          64.6
+
+      rapt 63 bruce cobb lg floppy       77.5
+
+      winnie wrap silky vicar bandit juan aorta    90.4
+
+The entropy shown is just the number of words times 12.92.
+
+2.2 How long should my passphrase be?
+
+I would recommend a five word passphrase for use with PGP, 
+ViaCrypt  and similar encryption programs. If you are lazy, a 
+four word passphrase will still provide reasonable protection. 
+For the paranoid, a six word pass phrase will make attacks on 
+your passphrase infeasible for the foreseeable future.
+
+The list can also be used to generate login passwords for 
+multi-user computer services by just concatenating two words. I 
+recommend adding a random special character between the words, 
+for example "dobbs(heron". Use Table 3.5, below. The security 
+of login passwords is aided by system imposed limitations on 
+the frequency login attempts.
+ 
+2.3 Why Diceware?
+
+The random word selection process could be done by computer. 
+This was Suk's original intent when he posted his word list. 
+The program would be simple. The hardest part is getting a 
+reliable source of random numbers. Safe techniques for doing 
+this are available -- PGP itself is a good model -- but there 
+are lots of tempting bad ways too. Internet RFC 1750 
+"Randomness Recommendations for Security," by Eastlake, Crocker 
+and Schiller, documents many of the pitfalls.
+
+Once the program is written properly, it still must be adapted 
+and tested for each popular computer platform. RFC 1750 points 
+out that good random number generating techniques are not 
+necessarily portable. The source code for each version must 
+undergo public review and the object programs have to be 
+distributed in a trustworthy way. Users then have to download 
+their copy, unpack it and learn how to use it. Most users will 
+not bother to authenticate their copy even though it could 
+easily have been be doctored to produce predictable 
+passphrases.
+
+In fact, it is so easy to concoct a program that appears to be 
+random but only produces passphrases from a restricted set, 
+that I would be reluctant to use any passphrase generating 
+program I did not write myself. One exception might be a 
+passphrase generator built into PGP itself, since I trust the 
+process by which PGP is produced and distributed.
+
+Finally any password generating program is subject to a whole 
+range of electronic attacks even after a verified copy has been 
+installed on a user's machine. In particular, the passphrase 
+generator has to display its output, making it subject to 
+Tempest intercept. While the program that uses the passphrase, 
+e.g. PGP, is subject to the same attacks, why give an adversary 
+two targets instead of one? 
+
+The Diceware approach, by contrast, is tamperproof, easy to 
+understand, platform independent, immune from electronic attack 
+and cryptographically strong.
+
+2.4 Construction of the Diceware Passphrase Generator.
+
+Suk's original list had 10760 entries. I added some more 3 and 
+4 character sequences that are easy-to-remember, like "300" and 
+"aaaa", and then trimmed the list to 7776 entries by deleting 
+all but about one in seven of Suk's 3796 six-character words. 
+
+The list was alphabetized using Microsoft Excel, which sorts 
+pure numbers ahead of mixed alphanumeric strings. Numerics and 
+special characters were moved to the end of the list. The index 
+values are all the five-digit base-6 numbers, but with the 
+digits running from 1 to 6 to match dice markings. 
+
+2.5 Analysis of the Diceware Passphrase Generator's Security.
+
+Selecting a word at random from the resulting list has an 
+entropy value of 12.92 bits. (log2 of 7776). The average length 
+of each word is 4.239 characters. This means that a passphrase 
+generated from this list will average an entropy of 3.05 bits 
+per character, not counting the spaces between words.
+By contrast, Suk's original list of 10760 entries gave 13.39 
+bits of entropy per word. But the average word length in his 
+list was 4.77 characters, yielding only 2.81 bits of entropy 
+per character.
+
+In short, nothing much is lost by going to the shorter list. A 
+random five word pass phrase generated by dice throws from this 
+list will have just over 64 bits of entropy. This is rock 
+solid, stop-any-cryptanalyst-dead-in-his-tracks entropy, as 
+opposed to the soft, squishy, I'm-so-clever-that-no-one-will-
+ever-guess-what-I-picked entropy of many other passphrase 
+selection strategies.
+
+2.6 Tampering with the Diceware Generator
+
+The Diceware Generator word list is inherently tamper proof. 
+The only way I can think of to compromise it would be to 
+shorten it or to introduce numerous duplicate entries. Since 
+the entries are numbered and are in alphabetical order, it is 
+easy to detect any such irregularities. When you select a word, 
+check to make sure it is in the proper alphabetical order and 
+is not a duplicate. 
+
+Nonetheless, I have signed the file with my PGP key, which is 
+available from the key servers, as well as by finger.
+
+Someone could break into your house or office and substitute 
+loaded dice for the ones you use. The small change in odds that 
+give a gambler an edge when using loaded dice wouldn't be 
+enough to help a cryptanalyst all that much. If you are worried 
+about this possibility, add one word to your passphrase. Or, 
+since you won't generate passphrases very often, you can buy 
+fresh dice for the occasion. If you don't have young kids, it's 
+an excuse to visit a toy store. 
+
+2.7 To Capitalize or Not to Capitalize
+
+All the words in the list are in lower case. The entropy values 
+shown above are based on the passwords as generated, with no 
+capitalization. You can increase entropy further by 
+capitalizing some characters, but is it worth the effort?
+
+Randomly capitalizing the characters in your passphrase adds 
+one bit of entropy per character, raising the entropy from 3 
+bits to 4 bits per character. However each capitalization 
+requires pressing the shift key. Since, on the average, half 
+the characters are capitalized, the number of key strokes will 
+be increased by a factor of 1.5 so the entropy per key stroke 
+will be 4/1.5 = 2.67 bits. This is less than the entropy per 
+keystroke of the original lowercase password! 
+
+You could argue that the number of added keystrokes is less 
+than half since you can hold down the shift key during runs of 
+capitals, but the mental effort is still there. And, of course 
+it is much harder to remember a passphrase like "rATIO Acts PR 
+AsTOr".
+
+The entropy added by having just one random capital in a 
+typical five word passphrase is 4.4 bits (log2 of number of 
+characters in the passphrase). By contrast, inserting one 
+random alphanumeric character somewhere in the middle of your 
+passphrase increases its entropy by about 9.5 bits (4.4 + log2 
+(36). You can use Table 3.1, below, to pick a character and 
+Table 3.6 to pick the character positions at which to insert 
+it. If the added character converts the word in which it falls 
+into another word on the list, move the character to the next 
+position in the passphrase.
+
+If all this seems like lily-gilding, just stick with the 
+original five-word passphrase you got from the Diceware word 
+list.
+
+3. Diceware Tables for Generating Random Strings
+
+Dice can also be used to generate random characters, numbers, 
+and syllables. Random alphanumeric strings or syllables can be 
+used for passwords; a random, 14-digit hexadecimal string can 
+be used as a strong DES key; and so on.
+
+The six look-up tables below make generating random strings 
+with dice easy. For legibility, the tables should be displayed 
+and printed with a monospace font, like Courier. To use the 
+tables, roll a pair of dice (three dice for Table 3.4.) and 
+look up each roll  in the appropriate table.  Using Table 3.1, 
+for example, a roll where the left die is 4 and the right die 
+is 2 results in the letter "T".  If you prefer, use two 
+different colored dice and replace "Left" and "Right" with the 
+colors.
+
+
+Table 3.1. Alphanumeric characters
+
+           R   I   G   H   T
+         1   2   3   4   5   6
+
+   1     A   B   C   D   E   F
+L  2     G   H   I   J   K   L
+E  3     M   N   O   P   Q   R
+F  4     S   T   U   V   W   X
+T  5     Y   Z   0   1   2   3
+   6     4   5   6   7   8   9
+
+Entropy:  5.17 bits per character.
+If you want only letters, roll again when a digit is selected. 
+Entropy: 4.7 bits per letter.
+
+
+Table 3.2. Decimal numbers
+
+           R   I   G   H   T
+         1   2   3   4   5   6
+
+   1     0   1   2   3   4   5
+L  2     6   7   8   9   0   1
+E  3     2   3   4   5   6   7
+F  4     8   9   0   1   2   3
+T  5     4   5   6   7   8   9
+   6     *   *   *   *   *   *
+
+* = roll again
+Entropy:  3.32 bits per digit.
+
+
+Table 3.3. Hexadecimal numbers
+
+           R   I   G   H   T
+         1   2   3   4   5   6
+
+   1     0   1   2   3   4   5
+L  2     6   7   8   9   A   B
+E  3     C   D   E   F   0   1
+F  4     2   3   4   5   6   7
+T  5     8   9   A   B   C   D
+   6     E   F   *   *   *   *
+
+* = roll again
+Entropy:  4.00 bits per hex digit.
+
+
+Table 3.4. Syllables (Use three dice)
+
+         M   I   D   D   L   E
+         1   2   3   4   5   6
+
+   1     B   C   D   F   G   H    R  1    A
+L  2     J   K   L   M   N   P    I  2    E
+E  3     QU  R   S   T   V   W    G  3    I
+F  4     X   Z   CH  CR  FR  ND   H  4    O
+T  5     NG  NK  NT  PH  PR  RD   T  5    U
+   6     SH  SL  SP  ST  TH  TR      6    Y
+
+Entropy:  7.75 bits per syllable.
+
+
+Table 3.5. Special characters
+
+           R   I   G   H   T
+         1   2   3   4   5   6
+
+   1     !   @   #   $   %   ^
+
+L  2     &   *   (   )   -   _
+
+E  3     +   =   [   ]   {   }
+
+F  4     ;   :   '   "   ,   .
+
+T  5     <   >   /   ?   `   ~
+
+   6     |   \   --  ==  ..  //
+
+Entropy:  5.17 bits per character.
+
+
+Table 3.6. Random numbers from 1 to 36
+
+           R   I   G   H   T
+         1   2   3   4   5   6
+
+   1     1   2   3   4   5   6
+L  2     7   8   9  10  11  12
+E  3    13  14  15  16  17  18
+F  4    19  20  21  22  23  24
+T  5    25  26  27  28  29  30
+   6    31  32  33  34  35  36
+
+Entropy:  5.17 bits per number.
+
+If you need random numbers in a smaller range, just roll again 
+when a number outside your range comes up. 
+
+For numbers in the range 1 to 216, roll three dice and use this 
+formula:
+
+   Left die + 6*(Middle die - 1) + 36*(Right die - 1)
+
+Entropy:  7.75 bits per number.
+
+
+4. Modifying Dice for Generating Strings
+
+If you need to produce a lot of random characters, cut out the 
+squares in Figure 1, below, and paste them on the six faces of 
+one die. Roll the modified die with an unmodified die and use 
+the number that shows on the latter to pick one of the six 
+characters on the showing face of the former.
+
+Figure 4.1. Cut-outs for modifying dice
+
+     abc   ghi   mno   stu   yx1   567
+     def   jkl   pqr   vwx   234   890
+
+One application for this technique is the manual creation of 
+one-time pads. By modifying five dice in this way and shaking 
+them in a shoe box along with five normal dice, you can 
+directly read off random five-character groups. Just associate 
+the left-most numeric die with the left-most modified die, and 
+so on.
+
+5. Getting more out of your dice
+
+Used in the traditional way, dice give you one of six choices, 
+or 2.58 bits of entropy per die thrown. If you toss the dice in 
+a shoe box as described in Section 2.1, above, you can do 
+better. 
+
+Imagine the dice have been shaken and allowed to slide down to 
+one edge of the shoe box. They are resting against two surfaces 
+of the box. For each die, you would normally read the exposed 
+face that is parallel to the bottom of the box. There is 
+another exposed face of the dice that is parallel to the side 
+of the box. It can be in one of four independent positions. 
+Reading that face as well gives 24 possibilities or 4.58 bits 
+per throw.
+If you plan to use dice to provide randomness to a computer 
+program, I recommend allowing the user to type in an arbitrary 
+character string and then hashing it with SHA or MD5. The user 
+can then just type in the dice face positions followed by the 
+side positions. For example, after shaking 10 dice, the user 
+might input:
+
+     "5364634452 4252253431"      
+
+This would give 45.8 bits of entropy input.
+
+Another possible use of the shoe-box method is generating 24 
+character one-time pads. For English, you can get by without 
+"Q" and "Z" by using some simple coding like "ZZ" for "X" and 
+"ZZU" for "QU", "Z" for space or Z. Some languages like Hebrew 
+and Greek, have 24 or fewer letters in their alphabet.
+
+One way to simplify recording your one-time pad is to mark your 
+dice with a letter at each edge of each face, like this:
+
+      -------
+     |   A   |
+     |B     C|
+     |   D   |
+      -------
+
+You can then just read off the top letter on the showing face 
+of each die after each shake of the shoe box.
+
+6. Other mechanical sources of randomness
+
+There are other useful mechanical sources of randomness besides 
+dice. Coins provide one bit when flipped, although they may not 
+be exactly 50-50. You can generate randomly permuted alphabets 
+by pulling letters out of a bag one at a time. Scrabble(R) 
+tiles are good for this. Special dice that are sold for the 
+game Dungeons and Dragons can be useful. I would not use the 
+spinners that come with many games, since the spinners can be 
+quite biased.
+
+7. Conclusion
+
+Dice can provide a low-tech solution to several cryptographic 
+problems.  In particular, the Diceware Passphrase Generator is 
+a simple, low-tech way to create passphrases that are short, 
+secure and easy to use. Now no one has an excuse for wimpy 
+passphrases. 
+
+The full word list is being posted separately to this group and is 
+also available at:
+          http://www.hayom.com/diceware.html 
+
+
+----------------------------------------------------
+Copyright (c) 1995, Arnold G. Reinhold, Cambridge, Mass. USA. 
+The author hereby grants rights for free non-commercial 
+electronic distribution of the entire text with attribution and 
+signature attached.
+
+html ref added 3/97  fixed 1999-5-18

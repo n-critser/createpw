@@ -21,3 +21,11 @@
   
   
 
+* Background:
+passphrases are similar to encrypted text. they should be hard for an atacker to guess.
+But practically speaking they should be either easy to remember or easy to copy and paste
+from a password protection program.  The original diceware wordlists I discovered were
+available through [[https://theworld.com/~reinhold/diceware.html][diceware]] . I've included some of the textual background for calculating
+entropy including a file called [[https://theworld.com/%7Ereinhold/diceware.txt][diceware.txt]] and a paper by CE Shannon about the 
+frequency of works and entropy in English [Prediction and Entropy in printed English , 
+Bell System Technical Journal, v.30 n. 1, 1951, pp 50-64] .   
